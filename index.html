@@ -51,9 +51,21 @@
 
     .card {
       background: var(--bg-card);
-      padding: 24px 28px;
+      padding: 20px 28px;
       min-height: 100vh;
       position: relative;
+    }
+
+    .card.home-card {
+      height: 100vh;
+      max-height: 100vh;
+      overflow: hidden;
+    }
+
+    .card.home-card #app {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .card.teal-bg {
@@ -65,7 +77,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 32px;
+      margin-bottom: 2vh;
+      flex-shrink: 0;
     }
 
     .breadcrumb {
@@ -260,38 +273,53 @@
     .img-overlay a { color: white; }
 
     /* ── Home page ────────────────────────────────── */
-    .hero-row {
+    .home-content {
       display: flex;
-      gap: 12px;
-      width: 65%;
-      margin-bottom: 40px;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
     }
 
-    .hero-row .img-container { flex: 1; height: 320px; }
+    .hero-row {
+      display: flex;
+      gap: 8px;
+      width: 62%;
+      flex: 0 0 25vh;
+    }
+
+    .hero-row .img-container { flex: 1; }
 
     .bio-section {
-      max-width: 700px;
-      margin: 0 0 48px;
+      max-width: 72%;
+      margin: 0;
+      padding: 2vh 0;
+      flex: 0 0 auto;
     }
 
     .bio-section p {
       font-family: var(--font-serif);
-      font-size: 24px;
+      font-size: clamp(16px, 1.6vw, 24px);
       font-weight: 500;
-      line-height: normal;
+      line-height: 1.4;
       color: var(--navy);
-      margin-bottom: 20px;
+      margin-bottom: 1.2vh;
     }
 
     .bottom-row {
       display: flex;
       justify-content: space-between;
-      gap: 24px;
+      flex: 1;
+      min-height: 0;
     }
 
     .bottom-row .img-container {
-      width: 33%;
-      height: 340px;
+      width: 32%;
+    }
+
+    .site-footer.home-footer {
+      margin-top: auto;
+      padding: 10px 0 4px;
+      border-top: none;
     }
 
     /* ── Work page ────────────────────────────────── */
@@ -652,19 +680,23 @@
 
     function homePage() {
       var homeCircles = [
-        { color: 'mint',   size: 70, top: '-20px',  left: '30%',  delay: '0s' },
-        { color: 'yellow', size: 60, top: '100px',  left: '-15px', delay: '0.7s' },
-        { color: 'mint',   size: 55, top: '300px',  left: '32%',  delay: '1.4s' },
-        { color: 'green',  size: 70, top: '160px',  right: '40px', delay: '2.1s' },
-        { color: 'mint',   size: 50, top: '280px',  right: '60px', delay: '2.8s' },
-        { color: 'green',  size: 55, top: '520px',  left: '5%',   delay: '3.5s' },
-        { color: 'mint',   size: 50, top: '560px',  left: '38%',  delay: '4.2s' },
-        { color: 'yellow', size: 55, top: '580px',  right: '20%', delay: '4.9s' },
+        { color: 'mint',   size: 85, top: '6%',   left: '16%',  delay: '0s' },
+        { color: 'yellow', size: 85, top: '12%',  left: '1%',   delay: '0.7s' },
+        { color: 'mint',   size: 85, top: '30%',  left: '34%',  delay: '1.4s' },
+        { color: 'green',  size: 85, top: '20%',  right: '8%',  delay: '2.1s' },
+        { color: 'mint',   size: 85, top: '32%',  right: '14%', delay: '2.8s' },
+        { color: 'green',  size: 85, top: '74%',  left: '2%',   delay: '3.5s' },
+        { color: 'mint',   size: 85, top: '78%',  left: '38%',  delay: '4.2s' },
+        { color: 'yellow', size: 85, top: '70%',  right: '22%', delay: '4.9s' },
       ];
+
+      // Add home-card class to card
+      document.getElementById('card').classList.add('home-card');
 
       return circlesHTML(homeCircles) +
         headerHTML([{ label: 'gracewong', href: '#/' }]) +
 
+        '<div class="home-content">' +
         '<section class="hero-row" aria-label="Featured images">' +
           '<div class="img-container">' +
             '<img src="images/hero-left.jpg" alt="Teal metal security gate on a street scene">' +
@@ -672,20 +704,20 @@
           '<div class="img-container">' +
             '<img src="images/hero-right.jpg" alt="Bathroom interior with striped shower curtain, sink, and mirror">' +
             '<span class="img-number">001</span>' +
-            '<a href="#/work" class="img-overlay" style="bottom:16px; left:50%; transform:translateX(-50%); white-space:nowrap;">(__Work)</a>' +
+            '<a href="#/work" class="img-overlay" style="bottom:16px; left:50%; transform:translateX(-50%); white-space:nowrap;">(____Work)</a>' +
           '</div>' +
         '</section>' +
 
         '<section class="bio-section">' +
-          '<p>Hi, I\u2019m Grace, a 2D animator and designer. I bring motion thinking and visual intuition to every stage of design, making interfaces that are intuitive, expressive, and alive.</p>' +
-          '<p>I lead with curiosity about people, about stories, about what makes us want to connect. Outside of design, I bake, I model, and I move fluidly between whatever calls to me creatively. I\u2019ve appeared in Paper Magazine, Dazed, and Vogue; my animation work has been featured at film festivals, including Interfilm in Berlin \u2014 and I carry that same eye for beauty and intention into everything I make.</p>' +
+          '<p>Hi, I\'m Grace, a 2D animator and designer. I bring motion thinking and visual intuition to every stage of design, making interfaces that are intuitive, expressive, and alive.</p>' +
+          '<p>I lead with curiosity about people, about stories, about what makes us want to connect. Outside of design, I bake, I model, and I move fluidly between whatever calls to me creatively. I\'ve appeared in Paper Magazine, Dazed, and Vogue; my animation work has been featured at film festivals, including Interfilm in Berlin - and I carry that same eye for beauty and intention into everything I make.</p>' +
         '</section>' +
 
         '<section class="bottom-row" aria-label="Explore more">' +
           '<div class="img-container">' +
             '<img src="images/home-play.jpg" alt="Pink pedestal with ceramic object and wooden chair in a sunlit room">' +
             '<span class="img-number">002</span>' +
-            '<a href="#/play" class="img-overlay" style="bottom:16px; left:50%; transform:translateX(-50%); white-space:nowrap;">(this is how <em>I</em> PLAY)</a>' +
+            '<a href="#/play" class="img-overlay" style="bottom:16px; left:50%; transform:translateX(-50%); white-space:nowrap;">(this is how__I__PLAY)</a>' +
           '</div>' +
           '<div class="img-container">' +
             '<img src="images/home-about.jpg" alt="Person wearing polka dot top and brown suede jacket, shot from behind">' +
@@ -693,8 +725,17 @@
             '<a href="#/about" class="img-overlay" style="top:50%; left:24px; transform:translateY(-50%);">*Who am I?</a>' +
           '</div>' +
         '</section>' +
+        '</div>' +
 
-        footerHTML();
+        '<footer class="site-footer home-footer">' +
+          '<span>[2026]</span>' +
+          '<div class="footer-links">' +
+          '<a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>' +
+          '<span class="pipe">|</span>' +
+          '<a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>' +
+          '<span class="pipe">|</span>' +
+          '<a href="mailto:hello@gracewong.com">Contact</a>' +
+          '</div></footer>';
     }
 
     /* ── Work state ───────────────────────────────── */
@@ -887,9 +928,10 @@
       var hash = (location.hash || '#/').slice(1);
       var route = routes[hash] || routes['/'];
 
-      // Reset card background
+      // Reset card classes
       var card = document.getElementById('card');
       card.classList.remove('teal-bg');
+      card.classList.remove('home-card');
 
       // Set page label
       document.getElementById('pageLabel').textContent = route.label;
