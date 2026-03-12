@@ -282,44 +282,54 @@
 
     .hero-row {
       display: flex;
-      gap: 8px;
-      width: 62%;
-      flex: 0 0 25vh;
+      gap: 10px;
+      width: 42%;
+      height: 19vh;
+      margin-bottom: 1.5vh;
     }
 
-    .hero-row .img-container { flex: 1; }
+    .hero-row .img-container:first-child { flex: 0 0 52%; }
+    .hero-row .img-container:last-child { flex: 0 0 46%; }
 
     .bio-section {
-      max-width: 72%;
+      width: 70.9%;
       margin: 0;
-      padding: 2vh 0;
+      padding: 0 0 1.5vh;
       flex: 0 0 auto;
     }
 
     .bio-section p {
       font-family: var(--font-serif);
-      font-size: clamp(16px, 1.6vw, 24px);
+      font-size: clamp(14px, 1.67vw, 24px);
       font-weight: 500;
-      line-height: 1.4;
+      line-height: normal;
       color: var(--navy);
-      margin-bottom: 1.2vh;
+      margin-bottom: 1vh;
     }
 
     .bottom-row {
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
       flex: 1;
       min-height: 0;
     }
 
-    .bottom-row .img-container {
-      width: 32%;
+    .bottom-row .img-container.play-img {
+      width: 31.2%;
+      height: 100%;
+    }
+
+    .bottom-row .img-container.about-img {
+      width: 37.9%;
+      height: 100%;
     }
 
     .site-footer.home-footer {
-      margin-top: auto;
-      padding: 10px 0 4px;
+      margin-top: 0;
+      padding: 8px 0 4px;
       border-top: none;
+      flex-shrink: 0;
     }
 
     /* ── Work page ────────────────────────────────── */
@@ -679,15 +689,16 @@
     /* ── Pages ────────────────────────────────────── */
 
     function homePage() {
+      // Circles positioned as % of 1440x1024 Figma frame
       var homeCircles = [
-        { color: 'mint',   size: 85, top: '7%',   left: '17%',  delay: '0s' },
-        { color: 'yellow', size: 85, top: '13%',  left: '1%',   delay: '0.7s' },
-        { color: 'mint',   size: 85, top: '31%',  left: '33%',  delay: '1.4s' },
-        { color: 'green',  size: 85, top: '21%',  right: '9%',  delay: '2.1s' },
-        { color: 'mint',   size: 85, top: '33%',  right: '18%', delay: '2.8s' },
-        { color: 'green',  size: 85, top: '76%',  left: '3%',   delay: '3.5s' },
-        { color: 'mint',   size: 85, top: '80%',  left: '39%',  delay: '4.2s' },
-        { color: 'yellow', size: 85, top: '72%',  right: '24%', delay: '4.9s' },
+        { color: 'mint',   size: 85, top: '10%',  left: '13%',  delay: '0s' },
+        { color: 'yellow', size: 85, top: '17%',  left: '2%',   delay: '0.7s' },
+        { color: 'mint',   size: 85, top: '32%',  left: '20%',  delay: '1.4s' },
+        { color: 'green',  size: 85, top: '24%',  right: '38%', delay: '2.1s' },
+        { color: 'mint',   size: 85, top: '34%',  right: '42%', delay: '2.8s' },
+        { color: 'green',  size: 85, top: '62%',  left: '4%',   delay: '3.5s' },
+        { color: 'mint',   size: 85, top: '66%',  left: '28%',  delay: '4.2s' },
+        { color: 'yellow', size: 85, top: '57%',  right: '30%', delay: '4.9s' },
       ];
 
       // Add home-card class to card
@@ -704,7 +715,7 @@
           '<div class="img-container">' +
             '<img src="images/hero-right.jpg" alt="Bathroom interior with striped shower curtain, sink, and mirror">' +
             '<span class="img-number">001</span>' +
-            '<a href="#/work" class="img-overlay" style="bottom:16px; left:50%; transform:translateX(-50%); white-space:nowrap;">(____Work)</a>' +
+            '<a href="#/work" class="img-overlay" style="bottom:12px; left:50%; transform:translateX(-50%); white-space:nowrap;">(____Work)</a>' +
           '</div>' +
         '</section>' +
 
@@ -714,12 +725,12 @@
         '</section>' +
 
         '<section class="bottom-row" aria-label="Explore more">' +
-          '<div class="img-container">' +
+          '<div class="img-container play-img">' +
             '<img src="images/home-play.jpg" alt="Pink pedestal with ceramic object and wooden chair in a sunlit room">' +
             '<span class="img-number">002</span>' +
-            '<a href="#/play" class="img-overlay" style="bottom:16px; left:50%; transform:translateX(-50%); white-space:nowrap;">(this is how__I__PLAY)</a>' +
+            '<a href="#/play" class="img-overlay" style="bottom:12px; left:50%; transform:translateX(-50%); white-space:nowrap;">(this is how__I__PLAY)</a>' +
           '</div>' +
-          '<div class="img-container">' +
+          '<div class="img-container about-img">' +
             '<img src="images/home-about.jpg" alt="Person wearing polka dot top and brown suede jacket, shot from behind">' +
             '<span class="img-number">003</span>' +
             '<a href="#/about" class="img-overlay" style="top:50%; left:24px; transform:translateY(-50%);">*Who am I?</a>' +
